@@ -17,49 +17,74 @@
 
 using namespace std;
 
-Person::Person(string inputString) : Person() {
-    //TODO: Implement non-default constructor
+Person::Person(string inputString) : Person()
+{
+    // TODO: Implement non-default constructor
+
+    stringstream ss(inputString);
+    char junk;
+    ss >> turn;
+    ss >> junk;
+    ss >> currentFloor;
+    ss >> junk;
+    ss >> targetFloor;
+    ss >> junk;
+    ss >> angerLevel;
 }
 
-bool Person::tick(int currentTime) {
-    //TODO: Implement tick
+bool Person::tick(int currentTime)
+{
+    // TODO: Implement tick
 
-    //Returning false to prevent compilation error
+    angerLevel++;
+    if (angerLevel == MAX_ANGER)
+    {
+        return true;
+    }
+
+    // Returning false to prevent compilation error
     return false;
 }
 
-void Person::print(ostream &outs) {    
-    //TODO: Implement print
+void Person::print(ostream &outs)
+{
+    // TODO: Implement print
+    outs << 'f' << currentFloor << 't' << targetFloor << 'a' << angerLevel;
 }
 
 //////////////////////////////////////////////////////
 ////// DO NOT MODIFY ANY CODE BENEATH THIS LINE //////
 //////////////////////////////////////////////////////
 
-Person::Person() {
+Person::Person()
+{
     turn = 0;
     currentFloor = 0;
     targetFloor = 0;
     angerLevel = 0;
 }
 
-int Person::getTurn() const {
+int Person::getTurn() const
+{
     return turn;
 }
 
-int Person::getCurrentFloor() const {    
+int Person::getCurrentFloor() const
+{
     return currentFloor;
 }
 
-int Person::getTargetFloor() const {    
+int Person::getTargetFloor() const
+{
     return targetFloor;
 }
 
-int Person::getAngerLevel() const {    
+int Person::getAngerLevel() const
+{
     return angerLevel;
 }
 
-ostream& operator<< (ostream& outs, Person p)
+ostream &operator<<(ostream &outs, Person p)
 {
     p.print(outs);
     return outs;
