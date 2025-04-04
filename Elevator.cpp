@@ -15,45 +15,73 @@
 
 using namespace std;
 
-void Elevator::tick(int currentTime) {
-    //TODO: Implement tick
+void Elevator::tick(int currentTime)
+{
+    if ((currentTime % TICKS_PER_ELEVATOR_MOVE == 0) && servicing)
+    {
+        if (currentFloor < targetFloor)
+        {
+            currentFloor++;
+        }
+        else if (currentFloor > targetFloor)
+        {
+            currentFloor--;
+        }
+        else
+        {
+            servicing = false;
+        }
+    }
+    return;
 }
 
-void Elevator::serviceRequest(int floorNum) {
-    //TODO: Implement serviceRequest
+void Elevator::serviceRequest(int floorNum)
+{
+    targetFloor = floorNum;
+    servicing = true;
+    return;
 }
 
 //////////////////////////////////////////////////////
 ////// DO NOT MODIFY ANY CODE BENEATH THIS LINE //////
 //////////////////////////////////////////////////////
 
-void Elevator::print(ostream &outs) {
+void Elevator::print(ostream &outs)
+{
     outs << currentFloor;
-    if (!servicing){
+    if (!servicing)
+    {
         outs << "w";
-    } else {
+    }
+    else
+    {
         outs << "s" << targetFloor;
     }
 }
 
-Elevator::Elevator() {
+Elevator::Elevator()
+{
     currentFloor = 0;
     servicing = false;
-	targetFloor = 0;
+    targetFloor = 0;
 }
 
-void Elevator::setCurrentFloor(int currentFloorIn) {
+void Elevator::setCurrentFloor(int currentFloorIn)
+{
     currentFloor = currentFloorIn;
 }
 
-bool Elevator::isServicing() const {
-	return servicing;
+bool Elevator::isServicing() const
+{
+    return servicing;
 }
 
-int Elevator::getCurrentFloor() const {
+int Elevator::getCurrentFloor() const
+{
     return currentFloor;
 }
 
-int Elevator::getTargetFloor() const {
+int Elevator::getTargetFloor() const
+{
     return targetFloor;
 }
