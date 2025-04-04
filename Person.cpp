@@ -19,7 +19,6 @@ using namespace std;
 
 Person::Person(string inputString) : Person()
 {
-    // TODO: Implement non-default constructor
 
     stringstream ss(inputString);
     char junk;
