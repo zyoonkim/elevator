@@ -16,8 +16,15 @@ using namespace std;
 
 int Floor::tick(int currentTime)
 {
-	// TODO: implement
-	return 0;
+	int count = 0;
+	for (int i = 0; i < numPeople; i++)
+	{
+		if (people[i].tick(currentTime))
+		{
+			count += 1;
+		}
+	}
+	return count;
 }
 
 void Floor::addPerson(Person newPerson, int request)
